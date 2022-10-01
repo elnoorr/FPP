@@ -1,0 +1,120 @@
+{% extends 'admin/block.html' %}
+{% block content %}
+<div class="wrapper">
+
+  <!-- Preloader -->
+  <div class="preloader flex-column justify-content-center align-items-center">
+    <img class="animation__shake" src="{{url_for('static', filename='dist/img/AdminLTELogo.png')}}" alt="AdminLTELogo" height="60" width="60">
+  </div>
+
+ {% include '/admin/layouts/navbar.html'%}
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+      {% include 'admin/layouts/content_header.html' %}
+    <!-- /.content-header -->
+
+    <!-- Main content -->
+    
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+          <!-- left column -->
+          <div class="col-md-12">
+            <!-- general form elements -->
+            <div class="card card-primary">
+              <div class="card-header">
+                <h3 class="card-title">Yeni kategoriya</h3>
+              </div>
+              <!-- /.card-header -->
+              <!-- form start -->
+              <form action="/admin/blog/categories/create" method="POST">
+                <div class="card-body">
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Kategoriya adı (AZ)</label>
+                    <input type="text" class="form-control" name="category_name_az">
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Kategoriya adı (EN)</label>
+                    <input type="text" class="form-control" name="category_name_en">
+                  </div>
+                </div>
+                <!-- /.card-body -->
+
+                <div class="card-footer">
+                  <button type="submit" class="btn btn-primary">Əlavə et</button>
+                </div>
+              </form>
+            </div>
+            <!-- /.card -->
+          </div>
+        </div>
+            <div class="row">
+             <div class="col-12">
+               <div class="card">
+                 <div class="card-header">
+                   <h3 class="card-title">Kategoriyalar</h3>
+   
+                   <div class="card-tools">
+                     <div class="input-group input-group-sm" style="width: 150px;">
+                       <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+   
+                       <div class="input-group-append">
+                         <button type="submit" class="btn btn-default">
+                           <i class="fas fa-search"></i>
+                         </button>
+                       </div>
+                     </div>
+                   </div>
+                 </div>
+                 <!-- /.card-header -->
+                 <div class="card-body table-responsive p-0">
+                   <table class="table table-hover text-nowrap">
+                     <thead>
+                       <tr>
+                         <th>ID</th>
+                         <th>Kategoriya adı</th>
+                         <th>Moderator</th>
+                         <th>Əlavə etmə tarixi</th>
+                         <th>Yeniləmə tarixi</th>
+                         <th>Redaktə et</th>
+                         <th>Sil</th>
+                       </tr>
+                     </thead>
+                     <tbody>
+                       {% for row in blog_categories %}
+                       <tr>
+                         <td>{{ row[0] }}</td>
+                         <td>{{ row[1] }}</td>
+                         <td>{{ row[8] }}</td>
+                         <td>{{ row[5] }}</td>
+                         <td>{{ row[6] }}</td>
+                         <td><a href="/admin/blog/categories/edit/{{ row[0] }}">Redakte</a></td>
+                         <td><a href="/admin/blog/categories/delete/{{ row[0] }}">Sil</a></td>
+                       </tr>
+                       {% endfor %}
+
+                     </tbody>
+                   </table>
+                 </div>
+                 <!-- /.card-body -->
+               </div>
+               <!-- /.card -->
+             </div>
+           </div>
+        </div>
+    </section>
+    <!-- /.content -->
+  </div>
+  
+
+  <!-- Control Sidebar -->
+  <aside class="control-sidebar control-sidebar-dark">
+    <!-- Control sidebar content goes here -->
+  </aside>
+  <!-- /.control-sidebar -->
+</div>
+<!-- ./wrapper -->
+
+{% endblock %}

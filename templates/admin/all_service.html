@@ -1,0 +1,93 @@
+{% extends 'admin/block.html' %}
+{% block content %}
+<div class="wrapper">
+
+  <!-- Preloader -->
+  <div class="preloader flex-column justify-content-center align-items-center">
+    <img class="animation__shake" src="{{url_for('static', filename='dist/img/AdminLTELogo.png')}}" alt="AdminLTELogo" height="60" width="60">
+  </div>
+
+ {% include '/admin/layouts/navbar.html'%}
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+      {% include 'admin/layouts/content_header.html' %}
+    <!-- /.content-header -->
+
+    <!-- Main content -->
+    
+    <section class="content">
+        <div class="container-fluid">
+            
+            <div class="row">
+             <div class="col-12">
+               <div class="card">
+                 <div class="card-header">
+                   <h3 class="card-title">Xidmətlər</h3>
+   
+                   <div class="card-tools">
+                     <div class="input-group input-group-sm" style="width: 150px;">
+                       <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+   
+                       <div class="input-group-append">
+                         <button type="submit" class="btn btn-default">
+                           <i class="fas fa-search"></i>
+                         </button>
+                       </div>
+                     </div>
+                   </div>
+                 </div>
+                 <!-- /.card-header -->
+                 <div class="card-body table-responsive p-0">
+                   <table class="table table-hover text-nowrap">
+                     <thead>
+                       <tr>
+                         <th>ID</th>
+                         <th>Başlıq</th>
+                         <th>Kategoriya adı</th>
+                         <th>Moderator</th>
+                         <th>Əlavə etmə tarixi</th>
+                         <th>Yeniləmə tarixi</th>
+                         <th>Redaktə et</th>
+                         <th>Sil</th>
+                       </tr>
+                     </thead>
+                     <tbody>
+                        {% for service in services %}
+                       <tr>
+                         <td>{{ service[0] }}</td>
+                         <td>{{ service[1] }}</td>
+                         <td>{{ service[14] }}</td>
+                         <td>{{ service[15] }}</td>
+                         <td>{{service[11] }}</td>
+                         <td>{{ service[12] }}</td>
+                         <td><a href="/admin/service/edit/{{ service[0] }}">Redakte</a></td>
+                         <td><a href="/admin/service/delete/{{ service[0] }}">Sil</a></td>
+                        
+                       </tr>
+                        {% endfor %}                     
+                      
+                     </tbody>
+                   </table>
+                 </div>
+                 <!-- /.card-body -->
+               </div>
+               <!-- /.card -->
+             </div>
+           </div>
+        </div>
+    </section>
+    <!-- /.content -->
+  </div>
+  
+
+  <!-- Control Sidebar -->
+  <aside class="control-sidebar control-sidebar-dark">
+    <!-- Control sidebar content goes here -->
+  </aside>
+  <!-- /.control-sidebar -->
+</div>
+<!-- ./wrapper -->
+
+{% endblock %}

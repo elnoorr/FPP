@@ -1,0 +1,161 @@
+{% extends 'admin/block.html' %}
+{% block content %}
+<div class="wrapper">
+
+  <!-- Preloader -->
+  <div class="preloader flex-column justify-content-center align-items-center">
+    <img class="animation__shake" src="{{url_for('static', filename='dist/img/AdminLTELogo.png')}}" alt="AdminLTELogo" height="60" width="60">
+  </div>
+
+ {% include '/admin/layouts/navbar.html'%}
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+      {% include 'admin/layouts/content_header.html' %}
+    <!-- /.content-header -->
+
+    <!-- Main content -->
+    
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+          <!-- left column -->
+          <div class="col-md-12">
+            <!-- general form elements -->
+            <div class="card card-primary">
+              <div class="card-header">
+                <h3 class="card-title">Yeni xidmət</h3>
+              </div>
+              <!-- /.card-header -->
+              <!-- form start -->
+              <form action="/admin/service/store" method="POST" enctype="multipart/form-data">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                        <div class="form-group">
+                    <label for="exampleInputEmail1">Başlıq (AZ)</label>
+                    <input type="text" class="form-control" name="title_az">
+                    </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                    <label for="exampleInputEmail1">Başlıq (EN)</label>
+                    <input type="text" class="form-control" name="title_en">
+                    </div>
+                    </div>
+                    </div>
+                 
+                  <div class="form-group">
+                        <label>Kategoriya</label>
+                        <select class="form-control" name="category_id">
+                            {% for cat in service_categories %}
+                                <option value="{{ cat[0] }}">{{ cat[1] }}}</option>
+                            {% endfor %}
+                        </select>
+                      </div>
+                  <div class="form-group">
+                    <label for="exampleInputFile">File input</label>
+                    <div class="input-group">
+                      <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="exampleInputFile" name="image">
+                        <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                      </div>
+                      <div class="input-group-append">
+                        <span class="input-group-text">Upload</span>
+                      </div>
+                    </div>
+                  </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                        <div class="card card-outline card-info">
+                            <div class="card-header">
+                            <h3 class="card-title">
+                                Məzmun (AZ)
+                            </h3>
+                            </div>
+                            <!-- /.card-header -->
+                            <div class="card-body">
+                            <textarea id="summernote" name="content_az"></textarea>
+                            </div>
+                            
+                        </div>
+                        </div>
+                        <!-- /.col-->
+      </div>
+      <div class="row">
+                        <div class="col-md-12">
+                        <div class="card card-outline card-info">
+                            <div class="card-header">
+                            <h3 class="card-title">
+                                Məzmun (EN)
+                            </h3>
+                            </div>
+                            <!-- /.card-header -->
+                            <div class="card-body">
+                            <textarea id="summernote2" name="content_en"></textarea>
+                            </div>
+                            
+                        </div>
+                        </div>
+                        <!-- /.col-->
+      </div>
+                  
+                  <!-- <div class="form-group">
+                    <label for="exampleInputEmail1">Facebook</label>
+                    <input type="text" class="form-control">
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Linkedin</label>
+                    <input type="text" class="form-control">
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">İnstagram</label>
+                    <input type="text" class="form-control">
+                  </div> -->
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <!-- textarea -->
+                      <div class="form-group">
+                        <label>Açar sözlər (SEO)</label>
+                        <textarea class="form-control" rows="3" placeholder="Enter ..." name="keywords"></textarea>
+                      </div>
+                    </div>
+                    <div class="col-sm-6">
+                      <div class="form-group">
+                        <label>Qısa məzmun</label>
+                        <textarea class="form-control" rows="3" placeholder="Enter ..." name="description"></textarea>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  
+                </div>
+                <!-- /.card-body -->
+
+                <div class="card-footer">
+                  <button type="submit" class="btn btn-primary">Əlavə et</button>
+                </div>
+              </form>
+            </div>
+            <!-- /.card -->
+          </div>
+        </div>
+            
+        </div>
+    </section>
+    <!-- /.content -->
+  </div>
+  
+
+  <!-- Control Sidebar -->
+  <aside class="control-sidebar control-sidebar-dark">
+    <!-- Control sidebar content goes here -->
+  </aside>
+  <!-- /.control-sidebar -->
+</div>
+
+
+<!-- ./wrapper -->
+
+{% endblock %}
